@@ -1,0 +1,26 @@
+# 运行环境：Python 3.11
+# 安装：pip install -r requirements.txt
+
+# ---- LangChain 核心 ----
+langchain==1.4.0
+langchain-core==1.6.1
+langchain-community==0.4.2
+langchain-text-splitters==1.1.2
+
+# ---- 向量库 ----
+langchain-chroma==1.1.0
+chromadb==1.5.9
+
+# ---- 大模型接入（OpenAI 兼容协议，用于调用通义千问）----
+langchain-openai==1.6.0
+openai==3.6.0
+
+# ---- 本地 Embedding 模型 ----
+sentence-transformers==6.0.1
+torch==2.14.0
+
+# ---- 文档解析 ----
+pypdf==6.18.0
+
+# ---- 配置加载 ----
+python-dotenv==1.1.0

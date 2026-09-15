@@ -1,0 +1,77 @@
+mysql
+	select * from 表名 where 条件 = '值' 
+							text like '%退货%' 
+	
+	我希望把货给退回去？
+	目标：
+		希望是语义相似度查询---》需要用到文本的向量化!!!
+	
+向量数据库：
+	还是以前的mysql,不是！！！
+	
+相似度：如何找文本，余弦相似度！！！
+
+安装依赖：
+	pip install langchain-huggingface 
+	sentence-transformers 
+	langchain-chroma chromadb -i https://pypi.tuna.tsinghua.edu.cn/simple
+国内镜像站：
+	https://hf-mirror.com
+国外网站
+	https://huggingface.co
+本地路径
+	
+	
+向量的持久化操作：
+	数据库：不是以前学习的关系型数据库,行和列 关系
+	向量数据库 Chroma
+
+请问向量数据库Chroma，它本身做文本的向量化吗？ BAAI/bge-small-zh-v1.5
+	你好，帅哥==>[0.23,0.11,....]
+	
+需要用到向量模型：
+	word2vec->单词 two vector向量，单词转向量
+	BAAI/bge-small-zh-v1.5 	512	  能够将任意文本映射为低维稠密向量[数学符号]，可用于检索、分类、聚类或语义搜索等任务。 它还可应用于大语言模型（LLMs）的向量数据库中。
+	算法：余弦相似度或欧式距离
+	
+=====================================================
+向量化的逻辑：
+	①文档：构建这个文档;
+		documents=[Document(page_content,metadata),Document()]
+		加载文档、切分文档==》返回的chunks==>文档 
+	②向量库Chromadb,create database mydb;
+		创建一个向量库(
+			持久化位置='',
+			集合,
+			向量模型=
+		)
+	③add_documents     多次增加数据，下面的哪个文件变大了？
+		data_level0.bin :214K
+		sqlite3         :196k
+			每次文档：embeddings里面;
+			元数据  :embedding_metada里面;
+	④两个方法
+		similarity_search ==》list[Document]
+			for doc in result:
+				
+		similarity_search_with_score()  ==>list[tuple]
+				*重点复习	
+				doc,score=元组
+			similarity_search_with_score(
+				query="订单发货了，要退款",
+				k=4,
+				filter={"category":"售后"}			#类型是字典{"key":"value"}
+			)
+			#业务中，我们可以使用目录，来做区分;
+				售后/文档文件
+				人事/文档文件 
+				财务/文档文件 
+=======================================================
+企业中最麻烦的不是开发：
+	业务定完之后，客户反复的修改他的需求!!!
+	第7章，承接第6章：
+		①加载函数多了一个元数据信息，获取该文件的 上级目录
+		②向量库那里，为了防止ids重复，增加了chunk_id，手动设置;
+		③查询，从向量库里面查询
+			有一个三元运算符的复习
+			解包+enumerate(results) 综合

@@ -1,0 +1,32 @@
+# ===== 环境变量与密钥（严禁提交）=====
+.env
+.env.local
+.env.*.local
+
+# ===== Python 缓存 =====
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+build/
+dist/
+*.egg-info/
+
+# ===== 向量数据库（可运行 build_db_index.py 重新生成）=====
+chroma_db/
+chroma_ecom_db/
+
+# ===== 本地大模型文件 =====
+models/
+*.gguf
+
+# ===== IDE / 编辑器 =====
+.idea/
+.vscode/
+*.iml
+*.swp
+
+# ===== 系统与日志 =====
+*.log
+.DS_Store
+Thumbs.db
