@@ -1,12 +1,9 @@
-# 本仓库包含多个独立项目，各项目内部还有自己的 .gitignore。
-# 这里只放"任何项目都通用"的忽略规则。
-
 # ===== 环境变量与密钥（严禁提交）=====
 .env
 .env.local
 .env.*.local
 
-# ===== Python =====
+# ===== Python 缓存 =====
 __pycache__/
 *.py[cod]
 *$py.class
@@ -15,7 +12,7 @@ build/
 dist/
 *.egg-info/
 
-# ===== 向量数据库（可重新生成）=====
+# ===== 向量数据库（可运行 build_db_index.py 重新生成）=====
 chroma_db/
 chroma_ecom_db/
 
@@ -23,15 +20,11 @@ chroma_ecom_db/
 models/
 *.gguf
 
-# ===== Node / 前端 =====
-node_modules/
-
 # ===== IDE / 编辑器 =====
 .idea/
 .vscode/
 *.iml
 *.swp
-*.swo
 
 # ===== 系统与日志 =====
 *.log
